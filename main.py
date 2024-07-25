@@ -62,7 +62,7 @@ server_name_env_name = "SS14_SERVER_NAME"
 
 server_name = os.getenv(server_name_env_name, "Adventure space")
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 db = None
 
 def eprint(*args, **kwargs):
