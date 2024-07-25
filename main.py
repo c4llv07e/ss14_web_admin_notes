@@ -153,6 +153,7 @@ def db_init():
 
 if __name__ == '__main__':
     db_init()
-    app.run(host="0.0.0.0", port="3411", debug=True)
+    debug = "DEV_MODE" in os.environ
+    app.run(host="0.0.0.0", port="3411", debug=debug)
     pass
 
