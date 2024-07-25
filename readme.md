@@ -13,3 +13,7 @@ export SS14_SERVER_NAME="My awesome server" # optional
 python3 ./main.py
 ```
 
+# License
+
+AGPL-3.0 :trollface:
+
