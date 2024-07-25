@@ -1,0 +1,41 @@
+[
+    {
+      "id": 2,
+      "round": 2,
+      "player_id": 101,
+      "player_name": "Player A",
+      "message": "This is a test note for Player A",
+      "admin_id": 201,
+      "admin_name": "Admin X",
+      "created_time": "2024-07-25 10:00:00",
+      "last_edited_by_id": 202,
+      "last_edited_by_name": "Admin Y",
+      "is_deleted": false,
+      "deleted_by_id": null,
+      "deleted_by_name": null,
+      "deleted_time": null,
+      "is_secret": false,
+      "expiration_time": "2024-08-25",
+      "severity": "Low"
+    },
+    {
+      "id": 1,
+      "round": 1,
+      "player_id": 102,
+      "player_name": "Player B",
+      "message": "Note for Player B",
+      "admin_id": 203,
+      "admin_name": "Admin Z",
+      "created_time": "2024-07-24 15:30:00",
+      "last_edited_by_id": 203,
+      "last_edited_by_name": "Admin Z",
+      "is_deleted": true,
+      "deleted_by_id": 201,
+      "deleted_by_name": "Admin X",
+      "deleted_time": "2024-07-24 16:00:00",
+      "is_secret": true,
+      "expiration_time": null,
+      "severity": "High"
+    }
+  ]
+  
