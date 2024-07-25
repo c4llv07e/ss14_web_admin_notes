@@ -110,7 +110,7 @@ def get_env_or_exit(env):
 def db_init():
     global db
     db_host = os.getenv(host_env_name, "localhost")
-    db_password = os.getenv(host_env_name, "None")
+    db_password = os.getenv(password_env_name, "None")
     db_user = os.getenv(user_env_name, "ss14")
     db_name = os.getenv(db_env_name, "ss14")
     db = psycopg2.connect(host=db_host, database=db_name, user=db_user,
