@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{server_name}} Admin notes</title>
+    <style>
+      table, th, td {
+          border:1px solid black;
+      }
+      th, td {
+          padding: 1px 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Round</th>
+        <th>Player</th>
+        <th>Message</th>
+        <th>Admin</th>
+        <th>Created at</th>
+        <th>Last edited by</th>
+        <th>Is deleted</th>
+        <th>Deleted by</th>
+        <th>Deleted time</th>
+        <th>Is secret</th>
+        <th>Expiration time</th>
+        <th>Severity</th>
+      </tr>
+      {% for note in notes %}
+      <tr>
+        <td>{{note.id}}</td>
+        <td>{{note.round}}</td>
+        <td title="{{note.player_id}}">{{note.player_name}}</td>
+        <td>{{note.message}}</td>
+        <td title="{{note.admin_id}}">{{note.admin_name}}</td>
+        <td>{{note.created_time}}</td>
+        <td title="{{note.last_edited_by_id}}">{{note.last_edited_by_name}}</td>
+        <td>{{note.is_deleted}}</td>
+        <td title="{{note.deleted_by_id}}">{{note.deleted_by_name}}</td>
+        <td>{{note.deleted_time}}</td>
+        <td>{{note.is_secret}}</td>
+        <td>{{note.expiration_time}}</td>
+        <td>{{note.severity}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
