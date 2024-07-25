@@ -30,6 +30,28 @@ class Note:
         self.expiration_time = expiration_time
         self.severity = severity
         pass
+    def to_list(self):
+        return {
+            "id": self.id,
+            "round": self.round,
+            "player_id": self.player_id,
+            "player_name": self.player_name,
+            "message": self.message,
+            "admin_id": self.admin_id,
+            "admin_name": self.admin_name,
+            "created_time": self.created_time.isoformat(),
+            "last_edited_by_id": self.last_edited_by_id,
+            "last_edited_by_name": self.last_edited_by_name,
+            "is_deleted": self.is_deleted,
+            "deleted_by_id": self.deleted_by_id,
+            "deleted_by_name": self.deleted_by_name,
+            "deleted_time": (self.deleted_time.isoformat() if
+                             self.is_deleted else None),
+            "is_secret": self.is_secret,
+            "expiration_time": (self.expiration_time.isoformat() if
+                                self.expiration_time else None),
+            "severity": self.severity,
+        }
     pass
 
 host_env_name = "POSTGRES_HOST"
@@ -46,12 +68,10 @@ db = None
 def eprint(*args, **kwargs):
     return print(*args, file=sys.stderr, **kwargs)
 
-@app.route("/", methods=["GET"])
-def route_root():
+def get_notes():
     if db == None:
-        return ("db isn't connected", 500)
+        return None, "db isn't connected"
     cur = db.cursor()
-    start = time.process_time()
     cur.execute("""
 SELECT
   an.admin_notes_id,
@@ -96,9 +116,22 @@ FROM admin_notes an
                     severity)
         notes.append(note)
         pass
-    end = time.process_time()
-    print(end - start)
     cur.close()
+    return notes, None
+
+@app.route("/admin_notes.json", methods=["GET"])
+def route_admin_notes():
+    # Almost golang
+    notes, err = get_notes()
+    if err != None:
+        return err, 500
+    return json.dumps(list(map(lambda x: x.to_list(), notes)))
+
+@app.route("/", methods=["GET"])
+def route_root():
+    notes, err = get_notes()
+    if err != None:
+        return err, 500
     return render_template("index.html", server_name=server_name, notes=notes)
 
 def get_env_or_exit(env):
