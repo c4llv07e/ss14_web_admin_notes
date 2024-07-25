@@ -95,7 +95,8 @@ FROM admin_notes an
   LEFT JOIN player pp ON (an.player_user_id = pp.user_id)
   LEFT JOIN player pa ON (an.created_by_id = pa.user_id)
   LEFT JOIN player pe ON (an.last_edited_by_id = pe.user_id)
-  LEFT JOIN player pd ON (an.deleted_by_id = pd.user_id);
+  LEFT JOIN player pd ON (an.deleted_by_id = pd.user_id)
+ORDER BY an.created_at DESC;
 """)
     notes = list()
     while (note_raw := cur.fetchone()) != None:
