@@ -120,8 +120,8 @@
     </div>
     <div class="filters">
         <div class="filter-box">
-            <label for="server">Server:</label>
-            <input type="text" id="server">
+            <label for="admin">Admin:</label>
+            <input type="text" id="admin">
         </div>
         <div class="filter-box">
             <label for="round">Round:</label>
@@ -204,7 +204,7 @@
 
         function filterNotes(notesData) {
             const searchText = document.getElementById('search').value.toLowerCase();
-            const serverText = document.getElementById('server').value.toLowerCase();
+            const adminText = document.getElementById('admin').value.toLowerCase();
             const roundText = document.getElementById('round').value.toLowerCase();
             const playerText = document.getElementById('player').value.toLowerCase();
             const severityText = document.getElementById('severity').value.toLowerCase();
@@ -214,10 +214,12 @@
 
             return notesData.filter(function (note) {
                 return (note.message.toLowerCase().includes(searchText) &&
-                    note.admin_name.toLowerCase().includes(serverText) &&
+                    (note.admin_name.toLowerCase() ===
+                        adminText.toLowerCase()) &&
                     note.round.toString().includes(roundText) &&
                     note.player_name.toLowerCase().includes(playerText) &&
-                    (severityText == '' || note.severity == severityText) &&
+                    (severityText === '' || note.severity ===
+                        severityText) &&
                     (!startDate || note.created_time >= startDate) &&
                     (!endDate || note.created_time <= endDate) &&
                     (showDeletedOnly ? note.is_deleted : true));
