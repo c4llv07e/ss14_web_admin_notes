@@ -215,7 +215,7 @@
             return notesData.filter(function (note) {
                 return (note.message.toLowerCase().includes(searchText) &&
                     (note.admin_name.toLowerCase() ===
-                        adminText.toLowerCase()) &&
+                        adminText.toLowerCase() || !adminText) &&
                     note.round.toString().includes(roundText) &&
                     note.player_name.toLowerCase().includes(playerText) &&
                     (severityText === '' || note.severity ===
